@@ -29,4 +29,4 @@ Collaboration and teamwork is the lifeblood of an effective team and my backgrou
 
 Are you looking to elevate your online presence or bring your digital ideas to life? I'd love to hear from you! Feel free to reach out for collaboration, consultation, or just a friendly chat about all things software development.
 
-_Let us accomplish great things together._
+_Take the stars reflected in a pond at night for those in the night sky._

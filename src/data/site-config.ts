@@ -24,8 +24,8 @@ export type Subscribe = {
 
 export type SiteConfig = {
     logo?: Image;
-    title: string;
-    subtitle?: string;
+    // title: string;
+    // subtitle?: string;
     description: string;
     image?: Image;
     headerNavLinks?: Link[];
@@ -38,8 +38,8 @@ export type SiteConfig = {
 };
 
 const siteConfig: SiteConfig = {
-    title: 'Chris',
-    subtitle: 'Taking up one more IPv4 Address',
+    // title: 'Chris',
+    // subtitle: 'FOSS',
     description: 'Chris Wangsanata\'s Personal Site',
     image: {
         src: '/dante-preview.jpg',
@@ -49,6 +49,10 @@ const siteConfig: SiteConfig = {
         {
             text: 'Home',
             href: '/'
+        },
+        { 
+            text: 'About',
+            href: '/about'
         },
         {
             text: 'Projects',
@@ -76,10 +80,6 @@ const siteConfig: SiteConfig = {
             text: 'Terms',
             href: '/terms'
         },
-        {
-            text: 'Dante\'s Template',
-            href: 'https://github.com/JustGoodUI/dante-astro-theme'
-        }
     ],
     socialLinks: [
         {
@@ -97,8 +97,8 @@ const siteConfig: SiteConfig = {
         }
     ],
     hero: {
-        title: 'Hello, World! Welcome to my part of the web.',
-        text: "I'm **Chris Wangsanata**, an aspiring software developer at UC Berkeley, dedicated to the realms of collaboration and artificial intelligence. My approach involves embracing intuition, conducting just enough research, and leveraging aesthetics as a catalyst for exceptional products. I have a profound appreciation for top-notch software, visual design, and the principles of product-led growth. Feel free to explore some of my coding endeavors on <a href='https://github.com/JustGoodUI/dante-astro-theme'>GitHub</a> or follow me on <a href='https://twitter.com/justgoodui'>Twitter/X</a>.",
+        title: 'Nice to meet you, I\'m Chris!',
+        text: "I'm **Chris Wangsanata**, a software developer dedicated to the realms of building and scaling software. I approach problems by leveraging all I have learned and conducting additional research to solve any, and all problems. I have a profound appreciation for top-notch software, visual design, and the engineers who build and scale the web as we see today. Feel free to explore some of my coding endeavors on <a href='https://github.com/cwangsanata'>GitHub</a>!",
         image: {
             src: '/hero.jpeg',
             alt: 'A person sitting at a desk in front of a computer'
