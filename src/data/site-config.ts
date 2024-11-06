@@ -24,8 +24,8 @@ export type Subscribe = {
 
 export type SiteConfig = {
     logo?: Image;
-    // title: string;
-    // subtitle?: string;
+    title: string;
+    subtitle?: string;
     description: string;
     image?: Image;
     headerNavLinks?: Link[];
@@ -38,8 +38,8 @@ export type SiteConfig = {
 };
 
 const siteConfig: SiteConfig = {
-    // title: 'Chris',
-    // subtitle: 'FOSS',
+    title: 'Chris',
+    subtitle: 'FOSS',
     description: 'Chris Wangsanata\'s Personal Site',
     image: {
         src: '/dante-preview.jpg',
@@ -63,7 +63,7 @@ const siteConfig: SiteConfig = {
             href: '/blog'
         },
         {
-            text: 'Get in Touch',
+            text: 'Contact',
             href: '/contact'
         }
         // {
