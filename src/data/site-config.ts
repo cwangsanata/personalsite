@@ -63,11 +63,19 @@ const siteConfig: SiteConfig = {
             href: '/blog'
         },
         {
-            text: 'Tags',
-            href: '/tags'
+            text: 'Get in Touch',
+            href: '/contact'
         }
+        // {
+        //     text: 'Tags',
+        //     href: '/tags'
+        // }
     ],
     footerNavLinks: [
+        {
+            text: 'Home',
+            href: '/'
+        },
         {
             text: 'Contact',
             href: '/contact'
@@ -106,13 +114,13 @@ const siteConfig: SiteConfig = {
             }
         ]
     },
-    subscribe: {
-        title: 'Subscribe to Dante Newsletter',
-        text: 'One update per week. All the latest posts directly in your inbox.',
-        formUrl: '#'
-    },
-    postsPerPage: 8,
-    projectsPerPage: 8
+    // subscribe: {
+    //     title: 'Subscribe to Dante Newsletter',
+    //     text: 'One update per week. All the latest posts directly in your inbox.',
+    //     formUrl: '#'
+    // },
+    postsPerPage: 5,
+    projectsPerPage: 5
 };
 
 export default siteConfig;
