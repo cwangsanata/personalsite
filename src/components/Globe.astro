@@ -13,21 +13,17 @@ function getWireColor(): number {
 
 function initGlobe() {
     const canvas = document.getElementById('globe-canvas') as HTMLCanvasElement | null;
-    console.log('[Globe] canvas found:', !!canvas, '| already init:', !!(canvas as any)?.__globeInit);
     if (!canvas || (canvas as any).__globeInit) return;
     (canvas as any).__globeInit = true;
 
     const container = canvas.parentElement as HTMLElement;
     const width  = container.clientWidth  || 320;
     const height = container.clientHeight || 320;
-    console.log('[Globe] container size:', width, 'x', height);
 
     let renderer: THREE.WebGLRenderer;
     try {
         renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, premultipliedAlpha: false });
-        console.log('[Globe] WebGLRenderer created OK');
     } catch (e) {
-        console.error('[Globe] WebGLRenderer failed:', e);
         delete (canvas as any).__globeInit;
         return;
     }
