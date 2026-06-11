@@ -40,7 +40,7 @@ export type SiteConfig = {
 
 const siteConfig: SiteConfig = {
     title: '> Chris Wangsanata',
-    description: 'Chris Wangsanata\'s Personal Site',
+    description: 'Christopher Wangsanata is a software engineer in the Bay Area building internal tooling and AI automation at SavvyMoney. UC Berkeley CS grad. Writing about engineering, tools, and whatever\'s interesting this week.',
     headerNavLinks: [
         {
             text: 'Home',

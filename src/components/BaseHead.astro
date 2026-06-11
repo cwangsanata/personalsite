@@ -63,11 +63,15 @@ function formatCanonicalURL(url: string | URL) {
 <meta property="og:url" content={formatCanonicalURL(canonicalURL)} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Chris Wangsanata" />
 {resolvedImage?.src && <meta property="og:image" content={resolvedImage.src} />}
+{resolvedImage?.src && <meta property="og:image:width" content="1200" />}
+{resolvedImage?.src && <meta property="og:image:height" content="630" />}
 {resolvedImage?.alt && <meta property="og:image:alt" content={resolvedImage.alt} />}
 
 <!-- X/Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:card" content={resolvedImage?.src ? 'summary_large_image' : 'summary'} />
 <meta property="twitter:url" content={formatCanonicalURL(canonicalURL)} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />

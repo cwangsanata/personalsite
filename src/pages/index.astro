@@ -27,6 +27,21 @@ const featuredExperiences = experiences.filter(({ data }) => data.isFeatured).sl
 ---
 
 <BaseLayout description={siteConfig.description} image={siteConfig.image}>
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Christopher Wangsanata",
+        "url": "https://cwsa.work",
+        "sameAs": [
+            "https://github.com/cwangsanata",
+            "https://www.linkedin.com/in/cwangsanata/",
+            "https://medium.com/@cwww"
+        ],
+        "jobTitle": "Software Engineer",
+        "worksFor": { "@type": "Organization", "name": "SavvyMoney" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of California, Berkeley" },
+        "description": "Software engineer in the Bay Area building internal tooling and AI automation."
+    })} />
     <Hero />
     {
         featuredProjects?.length > 0 && (

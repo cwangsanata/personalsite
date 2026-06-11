@@ -2,7 +2,7 @@
 title: About
 seo:
   title: About Me
-  description: The person behind the site.
+  description: About Christopher Wangsanata — software engineer in the Bay Area, UC Berkeley CS grad, building AI automation and internal tooling at SavvyMoney.
 ---
 
 ## Who I Am

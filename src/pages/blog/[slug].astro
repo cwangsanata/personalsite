@@ -64,6 +64,16 @@ if (isLocal) {
 ---
 
 <BaseLayout title={title} description={description} pageType="article" showHeader={false} canonicalUrl={canonicalUrl}>
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "author": { "@type": "Person", "name": "Christopher Wangsanata", "url": "https://cwsa.work" },
+        "datePublished": publishDate?.toISOString(),
+        "url": canonicalUrl ?? href,
+        "publisher": { "@type": "Person", "name": "Christopher Wangsanata", "url": "https://cwsa.work" }
+    })} />
     <article class="mb-16 sm:mb-24">
         <header class="mb-8">
             <h1>{title}</h1>
