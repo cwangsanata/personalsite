@@ -1,92 +1,71 @@
-# Dante - Astro & Tailwind CSS Theme by justgoodui.com
+# cwangsanata.vercel.app
 
-Dante is a single-author blog and portfolio theme for Astro.js. Featuring a minimal, slick, responsive and content-focused design. For more Astro.js themes please check [justgoodui.com](https://justgoodui.com/).
+Personal portfolio and blog site for Christopher Wangsanata. Built on the Dante Astro theme by [JustGoodUI](https://justgoodui.com/), extended with custom features.
 
-![Dante Astro.js Theme](public/dante-preview.jpg)
+## Features
 
-[![Deploy to Netlify Button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/JustGoodUI/dante-astro-theme)
+- Dark and light mode
+- Hero section with Three.js wireframe globe
+- Experience, projects, and blog sections
+- Blog posts pulled from Medium via RSS at build time, with canonical URLs pointing back to Medium
+- Astro content collections for experience and projects
+- JetBrains Mono throughout
+- Responsive, mobile-first layout
+- SEO: sitemap, RSS feed, canonical URLs, OpenGraph
+- View transitions
 
-If you click this☝️ button, it will create a new repo for you that looks exactly like this one, and sets that repo up immediately for deployment on Netlify.
+## Stack
 
-## Theme Features:
-
-- ✅ Dark and light color mode
-- ✅ Hero section with bio
-- ✅ Portfolio collection
-- ✅ Pagination support
-- ✅ Post tags support
-- ✅ Subscription form
-- ✅ View transitions
-- ✅ Tailwind CSS
-- ✅ Mobile-first responsive layout
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## Template Integrations
-
-- @astrojs/tailwind - https://docs.astro.build/en/guides/integrations-guide/tailwind/
-- @astrojs/sitemap - https://docs.astro.build/en/guides/integrations-guide/sitemap/
-- @astrojs/mdx - https://docs.astro.build/en/guides/markdown-content/
-- @astrojs/rss - https://docs.astro.build/en/guides/rss/
+- [Astro 4](https://astro.build/) — static site generator
+- [Tailwind CSS](https://tailwindcss.com/) — styling
+- [Three.js](https://threejs.org/) — WebGL globe
+- [Marked](https://marked.js.org/) — Markdown rendering
+- Deployed on [Vercel](https://vercel.com/)
 
 ## Project Structure
 
-Inside of Dante Astro theme, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── data/
-│   ├── icons/
-│   ├── layouts/
-│   ├── pages/
-│   ├── styles/
-│   └── utils/
-├── astro.config.mjs
-├── package.json
-├── README.md
-├── tailwind.config.cjs
-└── tsconfig.json
+```
+src/
+  components/       Astro components (Hero, Globe, ExperiencePreview, etc.)
+  content/
+    experience/     Work history (Markdown)
+    projects/       Projects (Markdown)
+    pages/          Static pages — About, Contact, Terms
+  data/             Site config
+  layouts/          Base layout and page wrappers
+  pages/            File-based routing
+  styles/           Global CSS and Tailwind base
+  utils/            Data utilities, Medium RSS feed parser
+public/             Static assets (favicon, robots.txt)
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Development
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro (`.astro`) components.
+```bash
+npm install
+npm run dev          # http://localhost:4321
+npm run build        # production build to ./dist/
+npm run preview      # preview the production build locally
+```
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+Vite caches dependency pre-bundles. If Three.js fails to load after install, restart the dev server with:
 
-Any static assets, like images, can be placed in the `public/` directory.
+```bash
+npm run dev -- --force
+```
 
-## Astro.js Commands
+## Blog
 
-All commands are run from the root of the project, from a terminal:
+Blog posts are sourced from [medium.com/@cwww](https://medium.com/@cwww) via RSS at build time. No local blog files are needed. New Medium posts appear after the next deployment. To automate rebuilds, set up a Vercel deploy hook triggered on a schedule.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Character Animation (TODO)
 
-## Want to learn more about Astro.js?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+See `CHARACTER_ANIMATION.md` for instructions on replacing the globe with an animated Mixamo character using `GLTFLoader` and `AnimationMixer`.
 
 ## Credits
 
-- Demo content generate with [Chat GPT](https://chat.openai.com/)
-- Images for demo content from [Unsplash](https://unsplash.com/)
-
-## Astro Themes by Just Good UI
-
-- [Ovidius](https://github.com/JustGoodUI/ovidius-astro-theme) is a free single author blog theme.
+Built on the [Dante Astro Theme](https://github.com/JustGoodUI/dante-astro-theme) by JustGoodUI, licensed under [GPL-3.0](https://github.com/JustGoodUI/dante-astro-theme/blob/main/LICENSE). Thank you to JustGoodUI for the solid foundation.
 
 ## License
 
-Licensed under the [GPL-3.0](https://github.com/JustGoodUI/dante-astro-theme/blob/main/LICENSE) license.
+GPL-3.0 — inherited from the upstream Dante theme.
