@@ -5,14 +5,25 @@ import Button from '../components/Button.astro';
 import Hero from '../components/Hero.astro';
 import PostPreview from '../components/PostPreview.astro';
 import ProjectPreview from '../components/ProjectPreview.astro';
+import ExperiencePreview from '../components/ExperiencePreview.astro';
 import siteConfig from '../data/site-config';
 import { sortItemsByDateDesc } from '../utils/data-utils';
+import { getMediumPosts, mediumPostToEntry } from '../utils/medium-feed';
 
-const posts = (await getCollection('blog')).sort(sortItemsByDateDesc);
-const featuredPosts = posts.filter(({ data }) => data.isFeatured);
+const [localPosts, mediumPosts] = await Promise.all([
+    getCollection('blog'),
+    getMediumPosts(),
+]);
+const featuredPosts = [
+    ...localPosts.filter(({ data }) => data.isFeatured),
+    ...mediumPosts.slice(0, 2).map(mediumPostToEntry),
+].sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()).slice(0, 3);
 
 const projects = (await getCollection('projects')).sort(sortItemsByDateDesc);
 const featuredProjects = projects.filter(({ data }) => data.isFeatured);
+
+const experiences = (await getCollection('experience')).sort(sortItemsByDateDesc);
+const featuredExperiences = experiences.filter(({ data }) => data.isFeatured).slice(0, 3);
 ---
 
 <BaseLayout description={siteConfig.description} image={siteConfig.image}>
@@ -26,6 +37,27 @@ const featuredProjects = projects.filter(({ data }) => data.isFeatured);
                 ))}
                 <div class="mt-12 sm:mt-16">
                     <Button href="/projects">View All Projects</Button>
+                </div>
+            </div>
+        )
+    }
+    {
+        featuredExperiences?.length > 0 && (
+            <div class="mb-16 sm:mb-24">
+                <h2 class="mb-12 text-xl font-serif italic sm:mb-16 sm:text-2xl">Work Experience</h2>
+                <div class="space-y-8 sm:space-y-10">
+                    {featuredExperiences.map((exp, index) => (
+                        <ExperiencePreview
+                            experience={exp}
+                            showTimeline={true}
+                            isFirst={index === 0}
+                            isLast={index === featuredExperiences.length - 1}
+                            headingLevel="h3"
+                        />
+                    ))}
+                </div>
+                <div class="mt-12 sm:mt-16">
+                    <Button href="/experience">View Full Experience</Button>
                 </div>
             </div>
         )

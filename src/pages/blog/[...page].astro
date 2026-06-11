@@ -7,13 +7,25 @@ import PostPreview from '../../components/PostPreview.astro';
 import Subscribe from '../../components/Subscribe.astro';
 import siteConfig from '../../data/site-config';
 import { sortItemsByDateDesc } from '../../utils/data-utils';
+import { getMediumPosts, mediumPostToEntry } from '../../utils/medium-feed';
+
+type NormalizedPost = ReturnType<typeof mediumPostToEntry> | CollectionEntry<'blog'>;
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-    const posts = (await getCollection('blog')).sort(sortItemsByDateDesc);
-    return paginate(posts, { pageSize: siteConfig.postsPerPage || 4 });
+    const [localPosts, mediumPosts] = await Promise.all([
+        getCollection('blog'),
+        getMediumPosts(),
+    ]);
+
+    const allPosts: NormalizedPost[] = [
+        ...localPosts,
+        ...mediumPosts.map(mediumPostToEntry),
+    ].sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+
+    return paginate(allPosts, { pageSize: siteConfig.postsPerPage || 5 });
 }
 
-type Props = { page: Page<CollectionEntry<'blog'>> };
+type Props = { page: Page<NormalizedPost> };
 
 const { page } = Astro.props;
 const blog = page.data;
@@ -21,8 +33,7 @@ const blog = page.data;
 
 <BaseLayout
     title="Blog"
-    description="Not only unsolicited advice, but also unsolicited opinions."
-    image={{ src: '/dante-preview.jpg', alt: 'The preview of the site' }}
+    description="Writing on software, engineering, and things worth thinking about."
     showHeader={false}
 >
     <h1 class="mb-12 text-2xl leading-tight font-serif sm:mb-16 sm:text-4xl">Blog Archive</h1>

@@ -2,31 +2,29 @@
 title: About
 seo:
   title: About Me
-  description: Learn more about the person behind the website and come along in my professional and personal experiences.
+  description: The person behind the site — what I do, how I think, and why I have two jobs.
 ---
 
-## Chris Wangsanata - Software Engineer
+## Who I Am
 
-**Greetings!** I'm Chris Wangsanata, a passionate software developer living in the East Bay Area. With a keen eye for design and a passion for crafting seamless digital experiences, I bring you a blend of creativity and technical expertise to the world of software development from the web to your own LANs.
+I'm Chris — a software engineer based in the East Bay, currently building internal tooling and AI automation at **SavvyMoney**. I spend my days making sales workflows less painful and occasionally remembering to eat lunch.
 
-## Skills and Expertise
+I graduated from **UC Berkeley** in December 2024 with a B.A. in Computer Science. College was great. I took classes on AI, cryptography, computer networks, and databases — all of which I now use at work in ways my professors definitely did not intend.
 
-I specialize in fullstack development, utilizing the latest technologies to build responsive and user-friendly websites. My proficiency includes **HTML**, **CSS**, **JavaScript**, and frameworks such as **React** and for dynamic and interactive user interfaces. On the server side, I'm well-versed in Node.js and have experience with database management systems like MongoDB and all SQL flavours.
+## What I Actually Do
 
-## Innovation and Problem-Solving
+Fullstack is the honest answer. I've written React components that made designers happy, Django endpoints that made no one happy, and AWS configurations that made my wallet cry. I've also been deep in the LLM space — building AI automation pipelines, wiring up Claude, and generally trying to get models to do useful things instead of confidently wrong things.
 
-I thrive on solving complex problems and transforming ideas into functional, elegant software. Whether it's optimizing performance, implementing new features, or troubleshooting issues, I approach each challenge with passion and a commitment to delivering high-quality, optimal solutions as quickly as possible.
+On the infrastructure side: Docker, AWS (more services than I'd like to admit), CI/CD pipelines, the works. I'm comfortable diving into a codebase I've never seen and either fixing the bug or at least understanding why it's unfixable before 5pm.
 
-## Continuous Learning
+## Outside the Editor
 
-The dynamic nature of the tech industry inspires me to stay up-to-date with the latest trends and advancements. I'm always eager to expand my skill set and embrace emerging technologies that enhance the functionality and aesthetics of the websites I create. I am currently learning **Flask** and **Home Networking**.
+I run a **homelab** — a small fleet of Raspberry Pis and repurposed hardware that I use to self-host things, experiment with networking, and build projects like an alarm clock for my Roku TV (because apparently I needed that to exist). It's part hobby, part education, and part "I can't believe this actually works."
 
-## Collaboration and Communication
-
-Collaboration and teamwork is the lifeblood of an effective team and my background provides me diverse perspectives on the state of modern engineering and what clients are looking for. I can effectively communicate with peers, desginers, and especially clients.
+I write occasionally on **[Medium](https://medium.com/@cwww)**. Some of it is technical. Some of it is about the experience of being a new grad in tech. A little of it is just things I needed to say. All of it is worth at least one read.
 
 ## Get in Touch
 
-Are you looking to elevate your online presence or bring your digital ideas to life? I'd love to hear from you! Feel free to reach out for collaboration, consultation, or just a friendly chat about all things software development.
+If you want to talk shop, collaborate on something weird, or just say hi — [reach out](/contact). I respond to most things.
 
 _Take the stars reflected in a pond at night for those in the night sky._

@@ -1,0 +1,35 @@
+---
+import type { GetStaticPathsOptions, Page } from 'astro';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Pagination from '../../components/Pagination.astro';
+import ExperiencePreview from '../../components/ExperiencePreview.astro';
+import siteConfig from '../../data/site-config';
+import { sortItemsByDateDesc } from '../../utils/data-utils';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    const experiences = (await getCollection('experience')).sort(sortItemsByDateDesc);
+    return paginate(experiences, { pageSize: siteConfig.experiencePerPage || 10 });
+}
+
+type Props = { page: Page<CollectionEntry<'experience'>> };
+
+const { page } = Astro.props;
+const experiences = page.data;
+---
+
+<BaseLayout
+    title="Work Experience"
+    description="My professional journey and work experience."
+    showHeader={false}
+>
+    <h1 class="mb-12 text-2xl leading-tight font-serif italic sm:mb-16 sm:text-4xl">Work Experience</h1>
+    <div class="space-y-8 sm:space-y-10">
+        {
+            experiences.map((exp, index) => (
+                <ExperiencePreview experience={exp} showTimeline={true} isFirst={index === 0} isLast={index === experiences.length - 1} />
+            ))
+        }
+    </div>
+    <Pagination page={page} class="my-16 sm:my-24" />
+</BaseLayout>

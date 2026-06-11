@@ -1,0 +1,106 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ExperiencePreview from '../../components/ExperiencePreview.astro';
+import { sortItemsByDateDesc, calculateDuration } from '../../utils/data-utils';
+
+export async function getStaticPaths() {
+    const experiences = (await getCollection('experience')).sort(sortItemsByDateDesc);
+    const experienceCount = experiences.length;
+    return experiences.map((experience, index) => ({
+        params: { slug: experience.slug },
+        props: {
+            experience,
+            prevExperience: index + 1 !== experienceCount ? experiences[index + 1] : null,
+            nextExperience: index !== 0 ? experiences[index - 1] : null
+        }
+    }));
+}
+
+type Props = {
+    experience: CollectionEntry<'experience'>;
+    prevExperience: CollectionEntry<'experience'>;
+    nextExperience: CollectionEntry<'experience'>;
+};
+
+const { experience, prevExperience, nextExperience } = Astro.props;
+const { company, role, location, startDate, endDate, isCurrent, description, technologies, highlights, companyUrl, seo } = experience.data;
+const { Content } = await experience.render();
+
+const formatDateRange = () => {
+    const start = startDate.toLocaleDateString('en-us', { year: 'numeric', month: 'short' });
+    if (isCurrent) return `${start} - Present`;
+    if (!endDate) return start;
+    const end = endDate.toLocaleDateString('en-us', { year: 'numeric', month: 'short' });
+    return `${start} - ${end}`;
+};
+
+const duration = calculateDuration(startDate, endDate, isCurrent);
+---
+
+<BaseLayout
+    title={seo?.title ?? `${role} at ${company}`}
+    description={seo?.description ?? description}
+    image={seo?.image}
+    pageType="article"
+    showHeader={false}
+>
+    <article class="mb-16 sm:mb-24">
+        <header class="mb-8">
+            <h1 class="text-3xl leading-tight font-serif font-medium sm:text-5xl sm:leading-tight">
+                {role}
+            </h1>
+            <div class="mt-2 text-xl text-main/80">
+                {
+                    companyUrl ? (
+                        <a href={companyUrl} target="_blank" rel="noopener noreferrer" class="hover:underline">
+                            {company}
+                        </a>
+                    ) : (
+                        company
+                    )
+                }
+            </div>
+            <div class="mt-2 text-sm text-main/70">
+                {formatDateRange()} • {duration}
+                {location && ` • ${location}`}
+            </div>
+            {
+                technologies.length > 0 && (
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        {technologies.map((tech) => (
+                            <span class="text-xs px-2 py-1 rounded border border-main/20">{tech}</span>
+                        ))}
+                    </div>
+                )
+            }
+        </header>
+
+        {
+            highlights.length > 0 && (
+                <div class="mb-8">
+                    <h2 class="text-xl font-serif font-medium mb-4">Key Highlights</h2>
+                    <ul class="list-disc list-inside space-y-2 text-sm leading-normal">
+                        {highlights.map((highlight) => (
+                            <li>{highlight}</li>
+                        ))}
+                    </ul>
+                </div>
+            )
+        }
+
+        <div class="max-w-none prose prose-dante sm:prose-lg">
+            <Content />
+        </div>
+    </article>
+
+    {
+        (prevExperience || nextExperience) && (
+            <div class="my-16 sm:my-24">
+                <h2 class="mb-12 text-xl font-serif italic sm:mb-16 sm:text-2xl">More Experience</h2>
+                {nextExperience && <ExperiencePreview experience={nextExperience} class="mb-10 sm:mb-12" headingLevel="h3" />}
+                {prevExperience && <ExperiencePreview experience={prevExperience} class="mb-10 sm:mb-12" headingLevel="h3" />}
+            </div>
+        )
+    }
+</BaseLayout>

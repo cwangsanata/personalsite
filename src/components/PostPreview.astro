@@ -1,9 +1,20 @@
 ---
-import { type CollectionEntry } from 'astro:content';
 import ArrowRight from '../icons/ArrowRight.astro';
 import FormattedDate from './FormattedDate.astro';
 
-type Props = { post: CollectionEntry<'blog'>; class?: string; headingLevel?: 'h2' | 'h3' };
+type Props = {
+    post: {
+        slug: string;
+        data: {
+            title: string;
+            publishDate: Date;
+            updatedDate?: Date;
+            excerpt?: string;
+        };
+    };
+    class?: string;
+    headingLevel?: 'h2' | 'h3';
+};
 
 const { post, class: className, headingLevel = 'h2' } = Astro.props;
 const { title, publishDate, updatedDate, excerpt } = post.data;

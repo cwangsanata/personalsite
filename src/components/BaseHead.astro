@@ -7,9 +7,10 @@ export type Props = {
     description?: string;
     image?: { src: string; alt?: string };
     pageType?: 'website' | 'article';
+    canonicalUrl?: string;
 };
 
-const { description = '', image = siteConfig.image, pageType = 'website' } = Astro.props;
+const { description = '', image = siteConfig.image, pageType = 'website', canonicalUrl } = Astro.props;
 const title = [Astro.props.title, siteConfig.title].filter(Boolean).join(' | ');
 const resolvedImage = image?.src
     ? {
@@ -17,7 +18,7 @@ const resolvedImage = image?.src
           alt: image.alt
       }
     : undefined;
-const canonicalURL = new URL(Astro.request.url, Astro.site);
+const canonicalURL = canonicalUrl ? new URL(canonicalUrl) : new URL(Astro.request.url, Astro.site);
 
 /**
  * Enforce some standard canonical URL formatting across the site.

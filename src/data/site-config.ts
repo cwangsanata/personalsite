@@ -35,24 +35,24 @@ export type SiteConfig = {
     subscribe?: Subscribe;
     postsPerPage?: number;
     projectsPerPage?: number;
+    experiencePerPage?: number;
 };
 
 const siteConfig: SiteConfig = {
-    title: 'Chris',
-    subtitle: 'FOSS',
+    title: '> Chris Wangsanata',
     description: 'Chris Wangsanata\'s Personal Site',
-    image: {
-        src: '/dante-preview.jpg',
-        alt: 'Dante - Astro.js and Tailwind CSS theme'
-    },
     headerNavLinks: [
         {
             text: 'Home',
             href: '/'
         },
-        { 
+        {
             text: 'About',
             href: '/about'
+        },
+        {
+            text: 'Experience',
+            href: '/experience'
         },
         {
             text: 'Projects',
@@ -101,12 +101,8 @@ const siteConfig: SiteConfig = {
         }
     ],
     hero: {
-        title: 'Nice to meet you, I\'m Chris!',
-        text: "I'm **Chris Wangsanata**, a software developer dedicated to the realms of building and scaling software. I approach problems by leveraging all I have learned and conducting additional research to solve any, and all problems. I have a profound appreciation for top-notch software, visual design, and the engineers who build and scale the web as we see today. Feel free to explore some of my coding endeavors on <a href='https://github.com/cwangsanata'>GitHub</a>!",
-        image: {
-            src: '/hero.jpeg',
-            alt: 'A person sitting at a desk in front of a computer'
-        },
+        title: 'Hey, I\'m Chris.',
+        text: "Software and Solutions engineer in the Bay Area. I build internal tooling, automate things that probably should've been automated years ago, and occasionally ship features that real humans use. Currently doing that at **SavvyMoney**.\n\nI graduated from **UC Berkeley** in 2024 with a CS degree and have since gone deep on fullstack development, AI/LLM tooling, and whatever rabbit hole I find myself in this week. I write about some of it on <a href='https://medium.com/@cwww'>Medium</a> when the mood strikes.",
         actions: [
             {
                 text: 'Get in Touch',
@@ -120,7 +116,8 @@ const siteConfig: SiteConfig = {
     //     formUrl: '#'
     // },
     postsPerPage: 5,
-    projectsPerPage: 5
+    projectsPerPage: 5,
+    experiencePerPage: 10
 };
 
 export default siteConfig;

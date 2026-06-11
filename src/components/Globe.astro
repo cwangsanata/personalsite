@@ -1,0 +1,92 @@
+---
+---
+<div id="globe-container" class="relative w-full h-[260px] sm:h-[340px] lg:h-[420px]">
+    <canvas id="globe-canvas" class="block w-full h-full bg-main"></canvas>
+</div>
+
+<script>
+import * as THREE from 'three';
+
+function getWireColor(): number {
+    return document.documentElement.classList.contains('dark') ? 0x7eb8f7 : 0x1a3a6b;
+}
+
+function initGlobe() {
+    const canvas = document.getElementById('globe-canvas') as HTMLCanvasElement | null;
+    console.log('[Globe] canvas found:', !!canvas, '| already init:', !!(canvas as any)?.__globeInit);
+    if (!canvas || (canvas as any).__globeInit) return;
+    (canvas as any).__globeInit = true;
+
+    const container = canvas.parentElement as HTMLElement;
+    const width  = container.clientWidth  || 320;
+    const height = container.clientHeight || 320;
+    console.log('[Globe] container size:', width, 'x', height);
+
+    let renderer: THREE.WebGLRenderer;
+    try {
+        renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, premultipliedAlpha: false });
+        console.log('[Globe] WebGLRenderer created OK');
+    } catch (e) {
+        console.error('[Globe] WebGLRenderer failed:', e);
+        delete (canvas as any).__globeInit;
+        return;
+    }
+
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(width, height);
+    renderer.setClearColor(0x000000, 0);
+
+    const scene  = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+    camera.position.z = 3.3;
+
+    const geometry = new THREE.SphereGeometry(1, 28, 28);
+    const material = new THREE.MeshBasicMaterial({
+        color: getWireColor(),
+        wireframe: true,
+        transparent: true,
+        opacity: 0.55,
+    });
+    const globe = new THREE.Mesh(geometry, material);
+    globe.rotation.x = 0.3;
+    scene.add(globe);
+
+    let animId: number;
+    function animate() {
+        animId = requestAnimationFrame(animate);
+        globe.rotation.y += 0.004;
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    const resizeObs = new ResizeObserver(() => {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        if (!w || !h) return;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+    });
+    resizeObs.observe(container);
+
+    const themeObs = new MutationObserver(() => {
+        material.color.set(getWireColor());
+    });
+    themeObs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    document.addEventListener('astro:before-swap', () => {
+        cancelAnimationFrame(animId);
+        resizeObs.disconnect();
+        themeObs.disconnect();
+        renderer.dispose();
+        delete (canvas as any).__globeInit;
+    }, { once: true });
+}
+
+function tryInit() {
+    requestAnimationFrame(() => initGlobe());
+}
+
+document.addEventListener('astro:page-load', tryInit);
+tryInit();
+</script>

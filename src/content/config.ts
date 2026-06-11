@@ -20,6 +20,7 @@ const blog = defineCollection({
         updatedDate: z.coerce.date().optional(),
         isFeatured: z.boolean().default(false),
         tags: z.array(z.string()).default([]),
+        canonicalUrl: z.string().url().optional(),
         seo: seoSchema.optional()
     })
 });
@@ -41,4 +42,21 @@ const projects = defineCollection({
     })
 });
 
-export const collections = { blog, pages, projects };
+const experience = defineCollection({
+    schema: z.object({
+        company: z.string(),
+        role: z.string(),
+        location: z.string().optional(),
+        startDate: z.coerce.date(),
+        endDate: z.coerce.date().optional(),
+        isCurrent: z.boolean().default(false),
+        description: z.string().optional(),
+        technologies: z.array(z.string()).default([]),
+        highlights: z.array(z.string()).default([]),
+        companyUrl: z.string().url().optional(),
+        isFeatured: z.boolean().default(false),
+        seo: seoSchema.optional()
+    })
+});
+
+export const collections = { blog, pages, projects, experience };

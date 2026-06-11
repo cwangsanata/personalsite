@@ -7,48 +7,78 @@ import PostPreview from '../../components/PostPreview.astro';
 import Subscribe from '../../components/Subscribe.astro';
 import { sortItemsByDateDesc } from '../../utils/data-utils';
 import { slugify } from '../../utils/common-utils';
+import { getMediumPosts, mediumPostToEntry, type MediumPost } from '../../utils/medium-feed';
+
+type PostEntry = { type: 'local'; entry: CollectionEntry<'blog'> } | { type: 'medium'; post: MediumPost };
 
 export async function getStaticPaths() {
-    const posts = (await getCollection('blog')).sort(sortItemsByDateDesc);
-    const postCount = posts.length;
-    return posts.map((post, index) => ({
+    const [localPosts, mediumPosts] = await Promise.all([
+        getCollection('blog'),
+        getMediumPosts(),
+    ]);
+    const sortedLocal = localPosts.sort(sortItemsByDateDesc);
+    const allLocalCount = sortedLocal.length;
+
+    const localPaths = sortedLocal.map((entry, index) => ({
+        params: { slug: entry.slug },
+        props: {
+            postEntry: { type: 'local' as const, entry },
+            prevPost: index + 1 !== allLocalCount ? mediumPostToEntry(mediumPosts[0]) ?? sortedLocal[index + 1] : null,
+            nextPost: index !== 0 ? sortedLocal[index - 1] : null,
+        },
+    }));
+
+    const mediumPaths = mediumPosts.map((post, index) => ({
         params: { slug: post.slug },
         props: {
-            post,
-            prevPost: index + 1 !== postCount ? posts[index + 1] : null,
-            nextPost: index !== 0 ? posts[index - 1] : null
-        }
+            postEntry: { type: 'medium' as const, post },
+            prevPost: index + 1 < mediumPosts.length ? mediumPostToEntry(mediumPosts[index + 1]) : null,
+            nextPost: index > 0 ? mediumPostToEntry(mediumPosts[index - 1]) : null,
+        },
     }));
+
+    return [...localPaths, ...mediumPaths];
 }
 
-type Props = { post: CollectionEntry<'blog'>; prevPost: CollectionEntry<'blog'>; nextPost: CollectionEntry<'blog'> };
+type Props = {
+    postEntry: PostEntry;
+    prevPost: ReturnType<typeof mediumPostToEntry> | CollectionEntry<'blog'> | null;
+    nextPost: ReturnType<typeof mediumPostToEntry> | CollectionEntry<'blog'> | null;
+};
 
 const { href } = Astro.url;
-const { post, prevPost, nextPost } = Astro.props;
-const { title, publishDate, updatedDate, excerpt, tags = [], seo } = post.data;
-const { Content } = await post.render();
+const { postEntry, prevPost, nextPost } = Astro.props;
+
+const isLocal = postEntry.type === 'local';
+const title = isLocal ? (postEntry.entry.data.seo?.title ?? postEntry.entry.data.title) : postEntry.post.title;
+const description = isLocal ? (postEntry.entry.data.seo?.description ?? postEntry.entry.data.excerpt) : postEntry.post.excerpt;
+const canonicalUrl = isLocal ? postEntry.entry.data.canonicalUrl : postEntry.post.canonicalUrl;
+const publishDate = isLocal ? postEntry.entry.data.publishDate : postEntry.post.publishDate;
+const tags = isLocal ? (postEntry.entry.data.tags ?? []) : postEntry.post.tags;
+
+let Content: any = null;
+if (isLocal) {
+    const rendered = await postEntry.entry.render();
+    Content = rendered.Content;
+}
 ---
 
-<BaseLayout title={seo?.title ?? title} description={seo?.description ?? excerpt} image={seo?.image} pageType="article" showHeader={false}>
+<BaseLayout title={title} description={description} pageType="article" showHeader={false} canonicalUrl={canonicalUrl}>
     <article class="mb-16 sm:mb-24">
         <header class="mb-8">
             <h1>{title}</h1>
             <div class="mt-4 text-sm">
                 <FormattedDate date={publishDate} />
-                {
-                    updatedDate && (
-                        <>
-                            {' '}
-                            <span>
-                                (Updated on <FormattedDate date={updatedDate} />)
-                            </span>
-                        </>
-                    )
-                }
+                {!isLocal && canonicalUrl && (
+                    <span class="ml-3 opacity-60">
+                        Originally published on <a href={canonicalUrl} target="_blank" rel="noopener noreferrer" class="underline">Medium</a>
+                    </span>
+                )}
             </div>
         </header>
         <div class="max-w-none prose prose-dante sm:prose-lg">
-            <Content />
+            {isLocal && Content && <Content />}
+            {!isLocal && <Fragment set:html={postEntry.post.htmlContent} />}
         </div>
         <div class="mt-8 flex flex-wrap items-center gap-6 text-sm justify-between sm:mt-12 sm:text-base">
             {
@@ -87,11 +117,8 @@ const { Content } = await post.render();
         async function copyUrl(button: HTMLButtonElement) {
             let url = button.getAttribute('data-url') || '';
             let label = button.innerText;
-
             await navigator.clipboard.writeText(url);
-
             button.innerText = 'Copied';
-
             setTimeout(() => {
                 button.innerText = label;
             }, 2500);
