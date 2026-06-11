@@ -2,7 +2,7 @@
 title: Terms of Service
 seo:
   title: Terms of Service
-  description: Explore the terms and conditions of Dante website for a clear understanding of guidelines and responsibilities.
+  description: Explore the terms and conditions of Chris Wangsanata website for a clear understanding of guidelines and responsibilities.
 ---
 
 **Last updated on November 6, 2024**

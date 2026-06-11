@@ -2,14 +2,14 @@
 title: About
 seo:
   title: About Me
-  description: The person behind the site — what I do, how I think, and why I have two jobs.
+  description: The person behind the site.
 ---
 
 ## Who I Am
 
-I'm Chris — a software engineer based in the East Bay, currently building internal tooling and AI automation at **SavvyMoney**. I spend my days making sales workflows less painful and occasionally remembering to eat lunch.
+I'm Chris — a software and solutions engineer based in the Bay Area, currently building internal tooling, automations, and yapping at **SavvyMoney**. I spend my days improving workflows and occasionally remembering to eat lunch.
 
-I graduated from **UC Berkeley** in December 2024 with a B.A. in Computer Science. College was great. I took classes on AI, cryptography, computer networks, and databases — all of which I now use at work in ways my professors definitely did not intend.
+I graduated from **UC Berkeley** in December 2024 with a B.A. in Computer Science. College was great. I took classes on computer security, AI, computer networks, and databases (personal favorite). 
 
 ## What I Actually Do
 
@@ -19,12 +19,11 @@ On the infrastructure side: Docker, AWS (more services than I'd like to admit), 
 
 ## Outside the Editor
 
-I run a **homelab** — a small fleet of Raspberry Pis and repurposed hardware that I use to self-host things, experiment with networking, and build projects like an alarm clock for my Roku TV (because apparently I needed that to exist). It's part hobby, part education, and part "I can't believe this actually works."
+I run a **homelab** of repurposed hardware that I use to self-host things, experiment with networking, and build projects like an alarm clock for my Roku TV (because apparently I needed that to exist). It's part hobby, part messing around, and part "I can't believe this actually works lol."
 
-I write occasionally on **[Medium](https://medium.com/@cwww)**. Some of it is technical. Some of it is about the experience of being a new grad in tech. A little of it is just things I needed to say. All of it is worth at least one read.
+I write occasionally on **[Medium](https://medium.com/@cwww)**. Just a thought dump more than anything.
 
 ## Get in Touch
 
-If you want to talk shop, collaborate on something weird, or just say hi — [reach out](/contact). I respond to most things.
+If you want to talk shop, collaborate on something weird, or just say hi — [reach out](/contact). I'll respond as soon as I can.
 
-_Take the stars reflected in a pond at night for those in the night sky._
