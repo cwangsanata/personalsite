@@ -2,7 +2,7 @@
 title: About
 seo:
   title: About Me
-  description: About Christopher Wangsanata — software engineer in the Bay Area, UC Berkeley CS grad, building AI automation and internal tooling at SavvyMoney.
+  description: About Christopher Wangsanata — software and solutions engineer in the Bay Area, UC Berkeley CS grad, building AI automation and internal tooling at SavvyMoney.
 ---
 
 ## Who I Am
