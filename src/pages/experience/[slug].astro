@@ -47,7 +47,7 @@ const duration = calculateDuration(startDate, endDate, isCurrent);
 >
     <article class="mb-16 sm:mb-24">
         <header class="mb-8">
-            <h1 class="text-3xl leading-tight font-serif font-medium sm:text-5xl sm:leading-tight">
+            <h1 class="text-3xl leading-tight font-semibold sm:text-5xl sm:leading-tight">
                 {role}
             </h1>
             <div class="mt-2 text-xl text-main/80">
@@ -79,7 +79,7 @@ const duration = calculateDuration(startDate, endDate, isCurrent);
         {
             highlights.length > 0 && (
                 <div class="mb-8">
-                    <h2 class="text-xl font-serif font-medium mb-4">Key Highlights</h2>
+                    <h2 class="text-xl font-semibold mb-4">Key Highlights</h2>
                     <ul class="list-disc list-inside space-y-2 text-sm leading-normal">
                         {highlights.map((highlight) => (
                             <li>{highlight}</li>
@@ -97,7 +97,7 @@ const duration = calculateDuration(startDate, endDate, isCurrent);
     {
         (prevExperience || nextExperience) && (
             <div class="my-16 sm:my-24">
-                <h2 class="mb-12 text-xl font-serif italic sm:mb-16 sm:text-2xl">More Experience</h2>
+                <h2 class="mb-12 text-xl font-semibold sm:mb-16 sm:text-2xl">More Experience</h2>
                 {nextExperience && <ExperiencePreview experience={nextExperience} class="mb-10 sm:mb-12" headingLevel="h3" />}
                 {prevExperience && <ExperiencePreview experience={prevExperience} class="mb-10 sm:mb-12" headingLevel="h3" />}
             </div>
