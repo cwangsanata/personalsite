@@ -98,7 +98,7 @@ const siteConfig: SiteConfig = {
     ],
     hero: {
         title: 'Hey, I\'m Chris.',
-        text: "Software and Solutions engineer in the Bay Area. I build internal tooling, automate things that probably should've been automated years ago, and occasionally ship features that real humans use. Currently doing that at **SavvyMoney**.\n\nI graduated from **UC Berkeley** in 2024 with a CS degree and have since gone deep on fullstack development, AI/LLM tooling, and whatever rabbit hole I find myself in this week. I write about some of it on <a href='https://medium.com/@cwww'>Medium</a> when the mood strikes.",
+        text: "Software and Solutions engineer in the Bay Area. I build internal tooling, automate things that probably should've been automated years ago, and occasionally ship features that real humans use. Currently doing that at **SavvyMoney**.\n\nI graduated from **UC Berkeley** with a CS degree and have since gone deep on fullstack development, AI/LLM tooling, and whatever rabbit hole I find myself in this week. I write about some of it on <a href='https://medium.com/@cwww'>Medium</a> when the mood strikes.",
         actions: [
             {
                 text: 'Get in Touch',
