@@ -90,11 +90,6 @@ const siteConfig: SiteConfig = {
             text: 'GitHub',
             href: 'https://github.com/cwangsanata'
         },
-        {
-            text: 'Resume',
-            href: 'https://docs.google.com/document/d/1v-aM3EuqrcoCtHjvElNCkmjovy4Qn34X57C5dVgekm4/edit?usp=sharing'
-            
-        }
     ],
     hero: {
         title: 'Hey, I\'m Chris.',
