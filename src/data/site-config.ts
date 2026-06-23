@@ -93,7 +93,7 @@ const siteConfig: SiteConfig = {
     ],
     hero: {
         title: 'Hey, I\'m Chris.',
-        text: "Software and Solutions engineer in the Bay Area. I build internal tooling, automate things that probably should've been automated years ago, and occasionally ship features that real humans use. Currently doing that at **SavvyMoney**.\n\nI graduated from **UC Berkeley** with a CS degree and have since gone deep on fullstack development, AI/LLM tooling, and whatever rabbit hole I find myself in this week. I write about some of it on <a href='https://medium.com/@cwww'>Medium</a> when the mood strikes.",
+        text: "Software and Solutions engineer in the Bay Area. I build and automate things that probably should've been automated years ago, and occasionally ship features that real humans use.\n\nI graduated from **UC Berkeley** with a CS degree and have since gone deep on fullstack development, AI/LLM tooling, and whatever rabbit hole I find myself in this week. I write about some of it on <a href='https://medium.com/@cwww'>Medium</a> when the mood strikes.",
         actions: [
             {
                 text: 'Get in Touch',
@@ -101,11 +101,6 @@ const siteConfig: SiteConfig = {
             }
         ]
     },
-    // subscribe: {
-    //     title: 'Subscribe to Dante Newsletter',
-    //     text: 'One update per week. All the latest posts directly in your inbox.',
-    //     formUrl: '#'
-    // },
     postsPerPage: 5,
     projectsPerPage: 5,
     experiencePerPage: 10
